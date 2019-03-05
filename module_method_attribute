@@ -16,6 +16,7 @@ a_list_dtype = df.dtypes # 为series
     #8. object 
 np.issubdtype(df['time'][0], np.int)  # 对具体的列或值进行数据类型判断 
 
+df.shape # 查看行列数，df_.shape[0]行数==len(df),df_.shape[1]列数
 df.head(3) # 查看3行，tail
 df.info()
 df.index   # 需要循环迭代显示出来,columns,values类似
