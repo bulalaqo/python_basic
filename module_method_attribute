@@ -49,6 +49,10 @@ df.append(df[2:],ignore_index=True) # 表示将a中的第三行以后的数据�
 (3)右连接，pd.merge(a1, a2, on='key', how='right')
 (4)外连接，pd.merge(a1, a2, on='key', how='outer')
 
+# 去重
+df.drop_duplicates(subset=['A','B'],keep='first',inplace=True) # subset=['A','B']没有时表示这一行所有元素全相同时才去重，df = df.drop_duplicates(inplace =True) 这种用法是错误的，在这被坑过很多次“等号前面一定不能有”
+
+
 # groupby
 pd.date_range('20000101',periods=10) # 用pd.date_range函数生成连续指定天数的的日期
 df.groupby('age').sum() # 生成的是dataframe，df.groupby(['age','grade']).sum(),mean(),cumsum()累加量（注意如果是一个list，如[1,2,3,-3]对应的累加值[1,3,6,6]）,min(),size(),字符串类型的列在使用sum时不显示
@@ -66,6 +70,7 @@ f = open(filepath) # 有时需要这样
 df = pd.read_csv (f,low_memory=False) # 
 df.to_excel(r'C:\\Users\\guohuaiqi\\Desktop\\2.xls',sheet_name='Sheet1')    
 df=pd.read_excel(r'C:\\Users\\guohuaiqi\\Desktop\\2.xls','Sheet1',na_values=['NA'])
+exec('df'+WTGnum+'=df') # 执行字符串语句
 
 # 其他描述性统计：
 df.mean() # 默认对每一列的数据求平均值；若加上参数a.mean(1)则对每一行求平均值；
