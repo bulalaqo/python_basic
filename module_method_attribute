@@ -2,13 +2,32 @@ python使用总结：
 
 pandas
 #< DataFrame >
+a_list_dtype = df.dtypes # 为series
+    #DataFrame数据类型
+    #1. float
+    #2. int
+    #3. bool
+    #4. datetime64[ns]
+    #5. datetime64[ns, tz]
+    #6. timedelta[ns]
+    #7. category
+    #8. object 
+    
+
+
+
+df.index = pd.to_datetime (df[ 'WTUR.Tm.Rw.Dt' ]) # 转换时间形式并增加索引，注意原始时间列会单独保留一列，format="%Y/%m/%d %H:%M"
+df.to_csv ('.csv', index=None) # None时不保留索引
+df_protocol_need=pd.read_excel('.xlsx')
+f = open(filepath) # 有时需要这样
+df = pd.read_csv (f,low_memory=False) # 
 
 
 python常用模块方法属性强化记忆
 #< os >
 os.listdir()
 os.path.jion([])
-glob.glob(path)
+glob.glob(r'\*.csv')
 
 #< list >
 l.index()
