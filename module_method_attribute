@@ -1,0 +1,28 @@
+python使用总结：
+
+pandas
+DataFrame
+
+
+python常用模块方法属性强化记忆
+OS
+os.listdir()
+os.path.jion([])
+glob.glob(path)
+2. list
+.index()
+
+3. zipfile
+z = zipfile.ZipFile (filename, 'r')
+z.extract (f.replace ('.arc', '.data'), filepath)
+z.close ()
+4. sqlite
+import sqlite3 as db
+conn = db.connect (dbfile)
+cursor = conn.cursor() # 加载全部DB或者ARC数据为DataFrame文件
+sql2 = 'select * from realtimedata' # 'realtimedata' 数据库表名               
+df = pd.read_sql (sql2, conn)
+conn.close() # 关闭数据库
+
+
+
