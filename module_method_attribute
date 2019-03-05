@@ -2,6 +2,8 @@ python使用总结：
 
 pandas
 #< DataFrame >
+# 参考 https://www.cnblogs.com/zuizui1204/p/6423069.html
+# 未特殊说明series同样适用
 a_list_dtype = df.dtypes # 为series
     #DataFrame数据类型
     #1. float
@@ -12,7 +14,40 @@ a_list_dtype = df.dtypes # 为series
     #6. timedelta[ns]
     #7. category
     #8. object 
-    
+np.issubdtype(df['time'][0], np.int)  # 对具体的列或值进行数据类型判断 
+
+df.head(3) # 查看3行，tail
+df.info()
+df.index   # 需要循环迭代显示出来,columns,values类似
+df.index.tolist() # 直接转化为list
+df.describe()   # 统计汇总，dataframe格式
+df.T
+df.sort_index(axis = 1, ascending = False, inplace = True) # 按轴排序，axis = 0 是按行排序，1按列名排序，默认升序，FALSE降序，升序（从第一行是1,第二行2）
+df.sort(columns = 'time') # 仅对这一列排序
+df[df['age'].isin(['2','3'])] # 表显示满足条件：列one中的值包含'2','3'的所有行。
+df[df>0] = -df # 赋值
+
+# 缺失值处理，在pandas中，使用np.nan来代替缺失值，这些值将默认不会包含在计算中。
+df.fillna(value=x,  inplace = True)   # 用x值填充缺失，注意对原始数据更改时，inplace = True才会更改生效
+df.dropna(how='any',  inplace = True) # 表示去掉所有包含缺失值的行
+
+# reindex()方法
+# 用来对指定轴上的索引进行改变/增加/删除操作，这将返回原始数据的一个拷贝。即用index=[]表示对index进行操作，columns表对列进行操作。
+df.reindex(index=list(df.index)+['five'],columns=list(df.columns)+['d']) # 增加'five'行和'd'列，默认新增数值全为nan
+df.reindex(index=['one','five'],columns=list(df.columns)+['d'])
+
+# 合并
+# contact 其中list_series表示要进行进行连接的列表数据,axis=1时表横着对数据进行连接。axis=0或不指定时，表将数据竖着进行连接。list_series中要连接的数据有几个则对应几个keys，设置keys是为了在数据连接以后区分每一个原始list_series中的数据。
+list_series=[df['WTUR.Other.Wn.I16.year'],df['WTUR.Other.Wn.I16.hour']]
+result=pd.concat(list_series,axis=1, keys=['WTUR.Other.Wn.I16.year','WTUR.Other.Wn.I16.hour'])
+
+df.append(df[2:],ignore_index=True) # 表示将a中的第三行以后的数据全部添加到a中，若不指定ignore_index参数，则会把添加的数据的index保留下来，若ignore_index=Ture则会对所有的行重新自动建立索引。
+
+# merge类似于SQL中的join, 设a1,a2为两个dataframe,二者中存在相同的键值，至于四者的具体差别，具体学习参考sql中相应的语法。,两个对象连接的方式有下面几种：
+(1)内连接，pd.merge(a1, a2, on='key')
+(2)左连接，pd.merge(a1, a2, on='key', how='left')
+(3)右连接，pd.merge(a1, a2, on='key', how='right')
+(4)外连接，pd.merge(a1, a2, on='key', how='outer')
 
 
 
