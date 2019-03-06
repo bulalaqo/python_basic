@@ -1,0 +1,4 @@
+import tensorflow as tf
+tf.__version__
+# Tensorflor 常用损失函数
+cost = tf.square(Y-y_model) # 
