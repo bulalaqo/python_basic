@@ -1,5 +1,12 @@
 python使用总结：
 
+
+numpy
+a.shape()
+a.reshape((2,4)) # reshape新生成数组和原数组公用一个内存，不管改变哪个都会互相影响。
+
+
+
 pandas
 #< DataFrame >
 # 参考 https://www.cnblogs.com/zuizui1204/p/6423069.html
@@ -62,6 +69,11 @@ df.groupby('age').sum() # 生成的是dataframe，df.groupby(['age','grade']).su
 df['gender1']=df['gender'].astype('category')    # 新增一列'gender1'，单独此行便能实现series转成category类型，可以节省存储空间。http://liao.cpython.org/pandas15/
 df['gender1'].cat.categories=['male','female']  # 即将'gender'中的0，1先转化为category类型再进行编码。
 
+# Reshaping 透视表
+# https://www.cnblogs.com/chaosimple/p/4153083.html
+stacked = df.stack() # 将列名水平分布调整为竖直分布
+stacked.unstack()    # 还原stacked.unstack(0)将第一列索引转换水平排布
+pd.pivot_table(df, values='D', index=['index_name1','index_name2'], columns=['C']) # 
 
 # 相关操作
 df.index = pd.to_datetime (df[ 'WTUR.Tm.Rw.Dt' ]) # 转换时间形式并增加索引，注意原始时间列会单独保留一列，format="%Y/%m/%d %H:%M"
