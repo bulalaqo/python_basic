@@ -35,6 +35,10 @@ df.sort(columns = 'time') # 仅对这一列排序
 df[df['age'].isin(['2','3'])] # 表显示满足条件：列one中的值包含'2','3'的所有行。
 df[df>0] = -df # 赋值
 
+# 查看某列的元素有哪些
+list(df['type'].unique())
+df['type'].value_counts() # 也可以
+
 # 缺失值处理，在pandas中，使用np.nan来代替缺失值，这些值将默认不会包含在计算中。
 df.fillna(value=x,  inplace = True)   # 用x值填充缺失，注意对原始数据更改时，inplace = True才会更改生效
 df.dropna(how='any',  inplace = True) # 表示去掉所有包含缺失值的行
@@ -114,6 +118,15 @@ plt.show()    #最后一定要加这个plt.show()，不然不会显示出图来�
 
 # 读取excel
 df=pd.read_excel(f, sheet_name,  header = 1, index_col=False) # index_col=False，不设置列索引 # refer # https://blog.csdn.net/brucewong0516/article/details/79096633
+    # 或者直接使用xlrd
+    import xlrd
+    f = r''
+    workbook = xlrd.open_workbook(f)
+    sheet_names= workbook.sheet_names()
+    sheet2 = workbook.sheet_by_name(sheet_names[0])
+    rows = sheet2.row_values(0) # 获取第四行内容
+    cols = sheet2.col_values(1) # 获取第二列内容
+
 # 读取csv
 df=pd.read_csv(filepath_or_buffer, sep=', ', delimiter=None, header='infer', names=None, index_col=None, usecols=None, squeeze=False, prefix=None, mangle_dupe_cols=True, dtype=None, engine=None, converters=None, true_values=None, false_values=None, skipinitialspace=False, skiprows=None, nrows=None, na_values=None, keep_default_na=True, na_filter=True, verbose=False, skip_blank_lines=True, parse_dates=False, infer_datetime_format=False, keep_date_col=False, date_parser=None, dayfirst=False, iterator=False, chunksize=None, compression='infer', thousands=None, decimal=b'.', lineterminator=None, quotechar='"', quoting=0, escapechar=None, comment=None, encoding=None, dialect=None, tupleize_cols=None, error_bad_lines=True, warn_bad_lines=True, skipfooter=0, skip_footer=0, doublequote=True, delim_whitespace=False, as_recarray=None, compact_ints=None, use_unsigned=None, low_memory=True, buffer_lines=None, memory_map=False, float_precision=None)[source]
 
@@ -147,5 +160,12 @@ sql2 = 'select * from realtimedata' # 'realtimedata' 数据库表名
 df = pd.read_sql (sql2, conn)
 conn.close() # 关闭数据库
 
+#字符串相关操作
+str.split(',') # 分割
+str.find('hello') # 查找
+str.replace('k',' 8') # 替换
+
+#<re> 正则匹配
+num = re.findall('\d+',ss) # \d+ 匹配字符串中的数字部分，返回列表
 
 
