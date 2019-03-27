@@ -1,4 +1,4 @@
-python使用总结：
+python使用总结： Life is short, You need Python~
 
 
 numpy
@@ -38,6 +38,15 @@ df[df>0] = -df # 赋值
 # 缺失值处理，在pandas中，使用np.nan来代替缺失值，这些值将默认不会包含在计算中。
 df.fillna(value=x,  inplace = True)   # 用x值填充缺失，注意对原始数据更改时，inplace = True才会更改生效
 df.dropna(how='any',  inplace = True) # 表示去掉所有包含缺失值的行
+
+# 删除列
+df.drop(columns=['B', 'C'])
+df.drop(['B', 'C'], axis=1)
+
+# 删除行
+df.drop([0, 1])
+df.drop(index=[0, 1])
+
 
 # reindex()方法
 # 用来对指定轴上的索引进行改变/增加/删除操作，这将返回原始数据的一个拷贝。即用index=[]表示对index进行操作，columns表对列进行操作。
@@ -103,6 +112,10 @@ b.plot()
 plt.show()    #最后一定要加这个plt.show()，不然不会显示出图来。
 
 
+# 读取excel
+df=pd.read_excel(f, sheet_name,  header = 1, index_col=False) # index_col=False，不设置列索引 # refer # https://blog.csdn.net/brucewong0516/article/details/79096633
+# 读取csv
+df=pd.read_csv(filepath_or_buffer, sep=', ', delimiter=None, header='infer', names=None, index_col=None, usecols=None, squeeze=False, prefix=None, mangle_dupe_cols=True, dtype=None, engine=None, converters=None, true_values=None, false_values=None, skipinitialspace=False, skiprows=None, nrows=None, na_values=None, keep_default_na=True, na_filter=True, verbose=False, skip_blank_lines=True, parse_dates=False, infer_datetime_format=False, keep_date_col=False, date_parser=None, dayfirst=False, iterator=False, chunksize=None, compression='infer', thousands=None, decimal=b'.', lineterminator=None, quotechar='"', quoting=0, escapechar=None, comment=None, encoding=None, dialect=None, tupleize_cols=None, error_bad_lines=True, warn_bad_lines=True, skipfooter=0, skip_footer=0, doublequote=True, delim_whitespace=False, as_recarray=None, compact_ints=None, use_unsigned=None, low_memory=True, buffer_lines=None, memory_map=False, float_precision=None)[source]
 
 
 
