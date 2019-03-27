@@ -30,10 +30,18 @@ df.index   # 需要循环迭代显示出来,columns,values类似
 df.index.tolist() # 直接转化为list
 df.describe()   # 统计汇总，dataframe格式
 df.T
-df.sort_index(axis = 1, ascending = False, inplace = True) # 按轴排序，axis = 0 是按行排序，1按列名排序，默认升序，FALSE降序，升序（从第一行是1,第二行2）
-df.sort(columns = 'time') # 仅对这一列排序
 df[df['age'].isin(['2','3'])] # 表显示满足条件：列one中的值包含'2','3'的所有行。
 df[df>0] = -df # 赋值
+
+# 设置索引
+df.set_index(["Column"], inplace=True, drop=False) # drop是否去除这一列
+
+# 排序
+df.sort_index(axis = 1, ascending = False, inplace = True) # 按轴排序，sort_index是按索引排序，axis = 0 是按行排序，1按列名排序，默认升序，FALSE降序，升序（从第一行是1,第二行2）
+df.sort_index(by='a') # 按这一列或者两列排序 by=['a','c']
+df.sort_index(by='C',axis=1) # 按这一行
+df.sort_values('time')       # 按这一列排序（df全局变动）
+
 
 # 查看某列的元素有哪些
 list(df['type'].unique())
@@ -48,7 +56,7 @@ df.drop(columns=['B', 'C'])
 df.drop(['B', 'C'], axis=1)
 
 # 删除行
-df.drop([0, 1])
+df.drop([0, 1], inplace = True)
 df.drop(index=[0, 1])
 
 
@@ -146,6 +154,12 @@ glob.glob(r'\*.csv')
 
 #< list >
 l.index()
+l.sort(reverse=True) # list排序reverse = False 升序（默认）
+
+#交集并集差集
+x & y # 交集  x 是set，set(list0)
+x | y # 并集  
+x - y # 差集
 
 #< zipfile >
 z = zipfile.ZipFile (filename, 'r')
