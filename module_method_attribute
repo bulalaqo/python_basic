@@ -1,11 +1,62 @@
-python使用总结： Life is short, You need Python~
+python使用总结： Life is short, You need Python~ 人生苦短，我用python~
+
+# anaconda 快捷命令
+Ctrl + Shift + Alt + P打开preference，可以设置一些例如字体，快捷键等。
+Ctrl加左键点击变量名称可以跳转到变量定义处。
+# %%可以创建cell使代码分部运行，类似于MATLAB，在单元格中Ctrl+enter可以运行当前cell，shift+enter可以运行当前单元格并跳转到下个cell。
+Ctrl+P可以打开文件搜索框且支持模糊搜索（fuzzy search），输入@之后可以搜索函数，class名称 。
+可视化创建矩阵（Ctrl+M）和向量（Ctrl+Alt+M），快捷键有时和其他软件快捷键冲突
+Ctrl+1注释/取消注释行，Ctrl+4/5注释取消注释代码块。
+Ctrl+L	清除shell
+debug	Ctrl+F5	调试
+Ctrl+F12	继续调试（单步）
+F5	运行
+选中一行，右键可以执行当前行
+
+#pd<常用的统计分析>
+# NaN None "" 三者区别
+from numpy import NaN
+type(NaN) # float 有时也写成nan，NAN，np.nan,np.NAN 都是float
+type(None) # None的类型是Nonetype既‘空对象’,python中没有null类型，但python是把0，空字符串''，空列表[]和None都看作False，把其他数值和非空字符串都看作True
+type("") # str # 对象=属性+方法 （其实方法也是一种属性，一种区别于数据属性的可调用属性
+# %%
+    import pandas as pd
+    import numpy as np
+    test = {"id":[1,2,3,4,5],
+            "birthday":['2000-01-01','',None,'2000-01-19',np.nan],
+            "name":['王菲','莫文蔚',np.NAN,None,'林宥嘉'],
+            "score":[100,99,np.NaN,98,None]}
+    test = pd.DataFrame(test)
+    # 结果如下：最后一行pd自己识别是数值，直接将None转换为数值NaN了
+         birthday  id  name  score
+    0  2000-01-01   1    王菲  100.0
+    1               2   莫文蔚   99.0
+    2        None   3   NaN    NaN
+    3  2000-01-19   4  None   98.0
+    4         NaN   5   林宥嘉    NaN
+    # 和None NaN的统计相关操作，当进行count操作时，NaN和None都不计算在内，""则被计算在内；当进行sum等计算时，会对除NaN和None以外的值进行计算。
+    test['score'].count()
+    # 3
+    test['score'].mean() # 统计时先看是否是数值类型，同时统计相关操作，是不计入NaN的,这和np.nanmean()相同，但是np.mean()是计入NaN的
+    # 99.0
+    test['birthday'].count()
+    # 3
+    test['score']=test['score'].astype('int') # 因为test的score一列中含有空值NaN，所以无法进行这一项操作，
+    test.isnull().any() # all() notnull 判断是否有None NAN ,不能识别空字符"",
+    a2 = test.where(test.notnull(), None) # 将NaN替换为None # cond = test.notnull(),other = -df 即满足条件时数值保持不变，否则用other替换。df.mask(cond) 使用时，结果与where相反
 
 
 numpy
 a.shape()
 a.reshape((2,4)) # reshape新生成数组和原数组公用一个内存，不管改变哪个都会互相影响。
-
-
+# %% pd<常用的统计分析>
+test = np.array([3,5,4,7,np.nan])
+m  = test.mean()   # nan
+m1 = np.mean(test) # nan
+m2 = np.nanmean(test) # 4.75
+    # 注意和哪np区别，如np.mean或者np.nanmean输入的series则两者没有区别，如果输入的np的array两者是有区别的
+    aa = np.mean(test['score'])     # 结果：99
+    aa1 = np.nanmean(test['score']) # 99
 
 pandas
 #< DataFrame >
@@ -33,6 +84,16 @@ df.T
 df[df['age'].isin(['2','3'])] # 表显示满足条件：列one中的值包含'2','3'的所有行。
 df[df>0] = -df # 赋值
 
+# 常用切片及给切片赋值
+df.loc[:,['A']]
+df.iloc[:,[13,15]] =df.iloc[:,[13,15]].astype('float')
+df[['A']] =df.iloc[:,[13]]
+df.loc[df['A']==0] #提取data数据(筛选条件: A列中数字为0所在的行数据)
+
+# 转换数据格式
+df.iloc[:,[13,15]] =df.iloc[:,[13,15]].astype('float') #一列中含有空值NaN，所以无法进行这一项操作
+df['a'] = pd.to_numeric(df['a'])
+
 # 设置索引
 df.set_index(["Column"], inplace=True, drop=False) # drop是否去除这一列
 
@@ -49,7 +110,13 @@ df['type'].value_counts() # 也可以
 
 # 缺失值处理，在pandas中，使用np.nan来代替缺失值，这些值将默认不会包含在计算中。
 df.fillna(value=x,  inplace = True)   # 用x值填充缺失，注意对原始数据更改时，inplace = True才会更改生效
-df.dropna(how='any',  inplace = True) # 表示去掉所有包含缺失值的行
+df.fillna({'sex':233,'phone':666})
+df.dropna(axis=1,how='any',  inplace = True) # 表示去掉所有包含缺失值的行any或all
+test_1 = test.fillna(method='pad',limit = 1) #  用前一个数据替代：
+test_2 = test.fillna(method='bfill',limit = 1) # 用后一个数据替代：其中limit代表了允许每一列中多少个NA值被替代~
+test_2 = test.fillna(test['score'].mean())  # 用统计量来替代:
+
+
 
 # 删除列
 df.drop(columns=['B', 'C'])
@@ -58,6 +125,7 @@ df.drop(['B', 'C'], axis=1)
 # 删除行
 df.drop([0, 1], inplace = True)
 df.drop(index=[0, 1])
+
 
 
 # reindex()方法
@@ -143,7 +211,7 @@ df=pd.read_csv(filepath_or_buffer, sep=', ', delimiter=None, header='infer', nam
 
 # 数据预处理异常数据筛选 https://blog.csdn.net/sublio/article/details/81327766 《categorical_data(类别型数据)预处理笔记：转化为数字》
 
-
+# 数据清洗 http://bluewhale.cc/2016-08-21/python-data-cleaning.html
 
 
 python常用模块方法属性强化记忆
