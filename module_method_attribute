@@ -180,6 +180,9 @@ df['x'].value_counts() # 统计某一列x中各个值出现的次数：
 df.apply(lambda x:x.max()-x.min()) # 对数据应用函数
 df['gender1'].str.lower() # 字符串相关操作 将gender1中所有的英文大写转化为小写，注意dataframe没有str属性，只有series有，所以要选取a中的gender1字段。
 
+# 按周聚合计算平均值（统计分析）
+df = pd.pivot_table(df, index=['a'], columns=['b'], aggfunc=numpy.sum)
+
 # 时间序列
 pd.date_range('20000201','20000210',freq='D') # 也可以不指定频数，只指定起始日期。在六中用pd.date_range('xxxx',periods=xx,freq='D/M/Y....')函数生成连续指定天数的的日期列表，'/'表示“或”。其中periods表示持续频数。此外如果不指定freq，则默认从起始日期开始，频率为day。其他频率表示如下：
 
