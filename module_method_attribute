@@ -13,7 +13,7 @@ Ctrl+F12	继续调试（单步）
 F5	运行
 选中一行，右键可以执行当前行
 
-#pd<常用的统计分析>
+#pd<常用的统计分析> refer https://www.cnblogs.com/onemorepoint/p/7506099.html 
 # NaN None "" 三者区别
 from numpy import NaN
 type(NaN) # float 有时也写成nan，NAN，np.nan,np.NAN 都是float
@@ -37,8 +37,9 @@ type("") # str # 对象=属性+方法 （其实方法也是一种属性，一种
     # 和None NaN的统计相关操作，当进行count操作时，NaN和None都不计算在内，""则被计算在内；当进行sum等计算时，会对除NaN和None以外的值进行计算。
     test['score'].count()
     # 3
-    test['score'].mean() # 统计时先看是否是数值类型，同时统计相关操作，是不计入NaN的,这和np.nanmean()相同，但是np.mean()是计入NaN的
-    # 99.0
+    test['score'].mean() # 统计时先看是否是数值类型，同时统计相关操作，默认是不计入NaN的（skip = True）,这和np.nanmean()相同，但是np.mean()是计入NaN的
+    # 99.0 # 常用的函数：count 非Na值，min，argmax 最大值索引位置， idxmin 最小值索引值， quantile 分位数， median 算数中位
+数， mad var std skew kurt sumsum cummin cumprod diff pct_change   
     test['birthday'].count()
     # 3
     test['score']=test['score'].astype('int') # 因为test的score一列中含有空值NaN，所以无法进行这一项操作，
