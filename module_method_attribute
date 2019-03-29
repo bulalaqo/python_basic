@@ -51,7 +51,7 @@ type("") # str # 对象=属性+方法 （其实方法也是一种属性，一种
     test['score']=test['score'].astype('int') # 因为test的score一列中含有空值NaN，所以无法进行这一项操作，
     test.isnull().any() # all() notnull 判断是否有None NAN ,不能识别空字符"",
     a2 = test.where(test.notnull(), None) # 将NaN替换为None # cond = test.notnull(),other = -df 即满足条件时数值保持不变，否则用other替换。df.mask(cond) 使用时，结果与where相反
-
+    # where 很有用处，在聚合就平均时可以去替换零值为None
 
 numpy
 a.shape()
