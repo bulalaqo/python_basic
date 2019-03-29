@@ -53,6 +53,10 @@ type("") # str # 对象=属性+方法 （其实方法也是一种属性，一种
     a2 = test.where(test.notnull(), None) # 将NaN替换为None # cond = test.notnull(),other = -df 即满足条件时数值保持不变，否则用other替换。df.mask(cond) 使用时，结果与where相反
     # where 很有用处，在聚合就平均时可以去替换零值为None
 
+# <inf> 无穷大值处理
+tt = np.array(combine_sum['power_average2'].tolist())
+tt[np.isinf(tt)] = np.nan 
+
 numpy
 a.shape()
 a.reshape((2,4)) # reshape新生成数组和原数组公用一个内存，不管改变哪个都会互相影响。
