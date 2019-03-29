@@ -156,12 +156,17 @@ index_list = df.index.tolist()
 
 for i in index_list:
     if all((df.loc[i,:] == 0).astype(int))==True:
-        df.drop([i], inplace = True)
+        df.drop([i], inplace = True, inplace =True)
 
 # reindex()方法
 # 用来对指定轴上的索引进行改变/增加/删除操作，这将返回原始数据的一个拷贝。即用index=[]表示对index进行操作，columns表对列进行操作。
 df.reindex(index=list(df.index)+['five'],columns=list(df.columns)+['d']) # 增加'five'行和'd'列，默认新增数值全为nan
 df.reindex(index=['one','five'],columns=list(df.columns)+['d'])
+
+# 删除索引，重置索引
+ser.reset_index(drop = True)
+df.reset_index(drop = True) 
+df = pd.DataFrame(df,columns = ['One','Two','Three'])
 
 # 合并
 # contact 其中list_series表示要进行进行连接的列表数据,axis=1时表横着对数据进行连接。axis=0或不指定时，表将数据竖着进行连接。list_series中要连接的数据有几个则对应几个keys，设置keys是为了在数据连接以后区分每一个原始list_series中的数据。
