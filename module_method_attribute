@@ -14,6 +14,12 @@ F5	运行
 选中一行，右键可以执行当前行
 
 #pd<常用的统计分析> refer https://www.cnblogs.com/onemorepoint/p/7506099.html 
+
+# Series 常用
+S.name # 获取列明
+
+
+
 # NaN None "" 三者区别
 from numpy import NaN
 type(NaN) # float 有时也写成nan，NAN，np.nan,np.NAN 都是float
