@@ -1,0 +1,46 @@
+<Python描述性统计>
+# refer: https://www.cnblogs.com/onemorepoint/p/7506099.html
+import numpy as np
+
+data = pd.series() # 
+# %% 
+def statistics_one_variable(data):
+    # %% 中心位置（均值、中位数、众数）
+    #计算均值
+    MEAN = np.mean(data)
+    #计算中位数
+    MEDIAN = np.median(data)
+    #计算众数(可能同时出现两个值)
+    MODE = mode(data) if  len(mode(data))==1 else mode(data)[0][0]
+
+    
+    # %% 发散程度（极差、方差、标准差、变异系数）
+    
+    #极差
+    PTP = np.ptp(data)
+    #方差
+    VAR = np.var(data)
+    #标准差
+    STD = np.std(data)
+    #变异系数
+    CV  = np.mean(data) / np.std(data)
+    
+    # %% 偏差程度（z-分数）
+    #计算第一个值的z-分数
+    Z_score = (data-np.mean(data)) / np.std(data) # 
+    
+    dict0 = {'MEAN': MEAN,
+            'MEDIAN': MEDIAN,
+            'MODE': MODE,
+            'PTP': PTP,
+            'VAR': VAR,
+            'STD': STD,
+            'CV': CV         
+            }
+    df222 = pd.DataFrame(dict0,index = [data.name]).T
+   
+    return df, Z_score
+
+
+<Python数据清洗>
+# refer: http://bluewhale.cc/2016-08-21/python-data-cleaning.html
