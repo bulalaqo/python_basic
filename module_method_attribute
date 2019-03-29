@@ -149,8 +149,14 @@ df.drop(['B', 'C'], axis=1)
 # 删除行
 df.drop([0, 1], inplace = True)
 df.drop(index=[0, 1])
+# 删除全为零的行 
+# (df == 0).astype(int).sum(axis=1) # 统计每行零的个数
+df = pd.DataFrame({'a':[1,0,0,1,3],'b':[0,0,1,0,1],'c':[0,0,0,0,0]})
+index_list = df.index.tolist()
 
-
+for i in index_list:
+    if all((df.loc[i,:] == 0).astype(int))==True:
+        df.drop([i], inplace = True)
 
 # reindex()方法
 # 用来对指定轴上的索引进行改变/增加/删除操作，这将返回原始数据的一个拷贝。即用index=[]表示对index进行操作，columns表对列进行操作。
