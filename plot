@@ -1,4 +1,3 @@
-# refer:https://www.cnblogs.com/onemorepoint/p/7506099.html
 # <定性分析（柱状图、饼形图）>
 from matplotlib import pyplot
 
@@ -29,7 +28,6 @@ def drawBar(grades):
     #绘图
     pyplot.show()
 
-drawBar(grades)
 
 from matplotlib import pyplot
 
@@ -47,7 +45,7 @@ def drawPie(grades):
     pyplot.title('Grades Of Male Students')
     pyplot.show()
 
-drawPie(grades)
+
 
 
 # <定量分析（直方图、累积曲线）>
@@ -55,22 +53,22 @@ drawPie(grades)
 from matplotlib import pyplot
 
 #绘制直方图
-def drawHist(heights):
+def drawHist(heights,xlabel = 'Heights', title = ''):
     #创建直方图
     #第一个参数为待绘制的定量数据，不同于定性数据，这里并没有事先进行频数统计
     #第二个参数为划分的区间个数
     pyplot.hist(heights, 100)
-    pyplot.xlabel('Heights')
+    pyplot.xlabel(xlabel)
     pyplot.ylabel('Frequency')
-    pyplot.title('Heights Of Male Students')
-    pyplot.show()
-
-drawHist(heights)
+    pyplot.title('Hist Of '+title)
+    pyplot.grid()  # 生成网格
+    pyplot.savefig('./'+title+'yearpower.jpg')
+    pyplot.show()   
 
 from matplotlib import pyplot
 
 #绘制累积曲线
-def drawCumulativeHist(heights):
+def drawCumulativeHist(heights,xlabel = 'Heights', title = ''):
     #创建累积曲线
     #第一个参数为待绘制的定量数据
     #第二个参数为划分的区间个数
@@ -78,12 +76,12 @@ def drawCumulativeHist(heights):
     #histtype参数为'step'，绘制阶梯状的曲线
     #cumulative参数为是否累积
     pyplot.hist(heights, 20, normed=True, histtype='step', cumulative=True)
+
     pyplot.xlabel('Heights')
     pyplot.ylabel('Frequency')
     pyplot.title('Heights Of Male Students')
     pyplot.show()
 
-drawCumulativeHist(heights)
 
 
 #<关系分析（散点图）>
@@ -100,7 +98,7 @@ def drawScatter(heights, weights):
     pyplot.title('Heights & Weights Of Male Students')
     pyplot.show()
 
-drawScatter(heights, weights)
+#drawScatter(heights, weights)
 
 
 #<探索分析（箱形图）>
@@ -115,4 +113,5 @@ def drawBox(heights):
     pyplot.title('Heights Of Male Students')
     pyplot.show()
 
-drawBox(heights)
+#drawBox(heights)
+#
