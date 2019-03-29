@@ -91,6 +91,23 @@ df.T
 df[df['age'].isin(['2','3'])] # 表显示满足条件：列one中的值包含'2','3'的所有行。
 df[df>0] = -df # 赋值
 
+# 创建DataFrame
+dict = {'MEAN': MEAN,
+        'MEDIAN': MEDIAN,
+        'MODE': MODE,
+        'PTP': PTP,
+        'VAR': VAR,
+        'STD': STD,
+        'CV': CV          
+        }
+df = pd.DataFrame(dict, index = [data.name]).T
+df = pd.DataFrame(data=[[1],[3],[2]], columns=['id','name','sex'])
+
+# 更改列名，索引名
+df.columns = ['Id','Name','Sex'] # 重命名
+a = a.rename(columns={'A':'a', 'C':'c'}) # refer ： https://www.cnblogs.com/hhh5460/p/5816774.html
+c.index=['A','B','C','D','E']
+
 # 常用切片及给切片赋值
 df.loc[:,['A']]
 df.iloc[:,[13,15]] =df.iloc[:,[13,15]].astype('float')
@@ -260,4 +277,6 @@ str.replace('k',' 8') # 替换
 #<re> 正则匹配
 num = re.findall('\d+',ss) # \d+ 匹配字符串中的数字部分，返回列表
 
-
+#<三元表达式、列表解析式>
+res='aaaaa' if x > y else 'bbbbbbb' 
+[i for i in l if i > 20 and i < 50]
