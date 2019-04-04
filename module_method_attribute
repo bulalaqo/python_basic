@@ -185,6 +185,7 @@ df.append(df[2:],ignore_index=True) # 表示将a中的第三行以后的数据�
 (3)右连接，pd.merge(a1, a2, on='key', how='right')
 (4)外连接，pd.merge(a1, a2, on='key', how='outer')
 # https://blog.csdn.net/qq_21840201/article/details/80727504
+# https://blog.csdn.net/milton2017/article/details/54406482
 
 # 去重
 df.drop_duplicates(subset=['A','B'],keep='first',inplace=True) # subset=['A','B']没有时表示这一行所有元素全相同时才去重，df = df.drop_duplicates(inplace =True) 这种用法是错误的，在这被坑过很多次“等号前面一定不能有”
