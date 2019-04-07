@@ -1,0 +1,12 @@
+<python VPN>
+
+import requests 
+
+#proxies = {
+#    "http": "socks5://127.0.0.1:22",
+#    'https': 'socks5://127.0.0.1:22'
+#}  # 这个就报错
+proxies = {'http': 'http://localhost:22', 
+           'https': 'http://localhost:22'}
+req = requests.get("https://www.google.com", proxies=proxies) # 直接代理，避免shadowsocks的全局代理流量浪费
+result = req.text 
