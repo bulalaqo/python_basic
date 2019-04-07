@@ -208,6 +208,7 @@ pd.pivot_table(df, values='D', index=['index_name1','index_name2'], columns=['C'
 # 相关操作
 df.index = pd.to_datetime (df[ 'WTUR.Tm.Rw.Dt' ]) # 转换时间形式并增加索引，注意原始时间列会单独保留一列，format="%Y/%m/%d %H:%M"
 df.to_csv ('.csv', index=None) # None时不保留索引
+df_tem.to_csv('data_buy\\'+'my_csv.csv', mode='a', header=False, index=None) # 追加写入
 df_protocol_need=pd.read_excel('.xlsx')
 f = open(filepath) # 有时需要这样
 df = pd.read_csv (f,low_memory=False) # 
