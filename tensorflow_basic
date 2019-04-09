@@ -3,6 +3,12 @@ tf.__version__
 # Tensorflor 常用损失函数
 cost = tf.square(Y-y_model) # 
 
-
+# <增加GPU训练模块>
+import os
+os.environ["CUDA_VISIBLE_DEVICES"] = "0" # CUDA_VISIBLE_DEVICES=0,2,3       Devices 0, 2, 3 will be visible; device 1 is masked
+                                         # CUDA_VISIBLE_DEVICES=""          No GPU will be visible
+sess_config = tf.ConfigProto() 
+sess_config.gpu_options.per_process_gpu_memory_fraction = 0.70 
+sess = tf.Session(config=sess_config) 
 
 
