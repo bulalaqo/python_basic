@@ -11,4 +11,15 @@ sess_config = tf.ConfigProto()
 sess_config.gpu_options.per_process_gpu_memory_fraction = 0.70 
 sess = tf.Session(config=sess_config) 
 
+# <tensorboard 训练可视化>
+
+with tf.Session() as sess:
+    sess.run(tf.global_variables_initializer())
+    #选定可视化存储目录    
+    writer = tf.summary.FileWriter("./train-log",sess.graph)   
+    test_writer = tf.summary.FileWriter("./train-log") 
+    print(sess.run(add))
+writer.close()
+tensorboard --logdir=F:\FTP_DATA\DATA_Mining\cardetect\train-log # 浏览器http://localhost:6006
+
 
