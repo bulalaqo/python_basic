@@ -311,3 +311,26 @@ test.py a b c d e f # 命令行窗口输入  结果为： [‘b’, ’c’, ’
 
 #<安装指定版本库>
 pip install websocket==0.14.0
+
+#<数据格式转换，科学计数和float>
+
+def float2E(str0):
+    if '+' in str0:
+        return int(str0.split('+')[1])
+    else:
+        return int(str0.split('-')[1])
+precision_amount = float2E(str('%e' % np.array(df[df['交易对']== symbol]['数量精度'].tolist()[0])))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
