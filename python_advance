@@ -30,4 +30,8 @@ with 语句适用于对资源进行访问的场合，确保不管使用过程中
 with context_expression [as target(s)]:
     with-body
 
+<读取文本文件>
+f = open("data.txt","r")   #设置文件对象
+str = f.read()     #将txt文件的所有内容读入到字符串str中  # f.readline() 读取一行 # data_list = f.readlines()  #直接将文件中按行读到list里
+f.close()   #将文件关闭
 
