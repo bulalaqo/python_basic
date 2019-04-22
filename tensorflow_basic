@@ -20,6 +20,6 @@ with tf.Session() as sess:
     test_writer = tf.summary.FileWriter("./train-log") 
     print(sess.run(add))
 writer.close()
-tensorboard --logdir=F:\FTP_DATA\DATA_Mining\cardetect\train-log # 浏览器http://localhost:6006
+tensorboard --logdir=F:\FTP_DATA\DATA_Mining\cardetect\train-log # 浏览器http://localhost:6006,打不开时使用命令行给定的网址
 
 
