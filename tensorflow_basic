@@ -23,3 +23,22 @@ writer.close()
 tensorboard --logdir=F:\FTP_DATA\DATA_Mining\cardetect\train-log # 浏览器http://localhost:6006,打不开时使用命令行给定的网址
 
 
+#<图片缩放>
+import matplotlib.pyplot as plt  
+import tensorflow as tf  
+import numpy as np  
+  
+image_raw_data = tf.gfile.GFile('C:/Users/DELL/Desktop/CWTPic/train1.jpg','r').read()   #加载原始图像  
+  
+with tf.Session() as sess:  
+    img_data = tf.image.decode_jpeg(image_raw_data)   #解码
+    plt.imshow(img_data.eval())  
+    plt.show()
+    resized = tf.image.resize_images(img_data, [64,64],method=0)  #第一个参数为原始图像，第二个参数为图像大小，第三个参数给出了指定的算法  
+    resized = np.asarray(resized.eval(),dtype='uint8')  #变为uint8才能显示
+    plt.imshow(resized)   
+    plt.show()
+
+<#tf.summary.scalar>
+http://cache.baiducontent.com/c?m=9d78d513d98515b8599d837e7a01d6165813df3c6f979b027ea48448e4735a310637b0e574620704a2d20a6216db4c4b9cf12103361767f7c5c7d20c9bf9d33f2efb3a293559c35612a419fe8d1b32c157c107b6b240b3a7f03090a4d0d4c25155ce53067c97f0fc00464b94&p=aa769a47878559ff57e690685153&newp=c271c54addc708b334be9b7c1b4892695d0fc20e3bd3c44324b9d71fd325001c1b69e7bf2d201303d9c37c6406ab4a5deff433763c1766dada9fca458ae7c46133e4&user=baidu&fm=sc&query=tf%2Esummary%2Escalar+%D7%F7%D3%C3&qid=de64187700003764&p1=4
+
