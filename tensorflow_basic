@@ -42,3 +42,10 @@ with tf.Session() as sess:
 <#tf.summary.scalar>
 http://cache.baiducontent.com/c?m=9d78d513d98515b8599d837e7a01d6165813df3c6f979b027ea48448e4735a310637b0e574620704a2d20a6216db4c4b9cf12103361767f7c5c7d20c9bf9d33f2efb3a293559c35612a419fe8d1b32c157c107b6b240b3a7f03090a4d0d4c25155ce53067c97f0fc00464b94&p=aa769a47878559ff57e690685153&newp=c271c54addc708b334be9b7c1b4892695d0fc20e3bd3c44324b9d71fd325001c1b69e7bf2d201303d9c37c6406ab4a5deff433763c1766dada9fca458ae7c46133e4&user=baidu&fm=sc&query=tf%2Esummary%2Escalar+%D7%F7%D3%C3&qid=de64187700003764&p1=4
 
+<#屏蔽警报信息>
+import os
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
+#默认为0：输出所有log信息
+#设置为1：进一步屏蔽INFO信息
+#设置为2：进一步屏蔽WARNING信息
+#设置为3：进一步屏蔽ERROR信息
