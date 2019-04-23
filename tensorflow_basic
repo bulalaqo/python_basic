@@ -49,3 +49,8 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 #设置为1：进一步屏蔽INFO信息
 #设置为2：进一步屏蔽WARNING信息
 #设置为3：进一步屏蔽ERROR信息
+
+
+<报CPU不支持AVX内核错误>
+ Advanced Vector Extensions (AVX, also known as Sandy Bridge New Extensions) 先进的矢量扩展（AVX，也称为桑迪桥新的扩展）是从英特尔和英特尔在2008年3月提出的微处理器的X86指令集架构的扩展，第一次由英特尔支持，在第2011季度和以后的SoeBoE桥处理器装运。AMD与推土机处理器航运在Q3 2011。AVX提供了新的特性、新的指令和新的编码方案。AVX2将大多数整数命令扩展为256位，并介绍了融合乘法累加（FMA）操作。AVX-512扩展AVX到512位支持使用一个新的EVEX前缀编码由英特尔提出的2013年7月，第一次支持英特尔与骑士着陆处理器，在2016装运。
+ 参考网友的评论解释：这个意思其实是，您下载的TensorFlow太low了，根本没有通过兼容AVX来Compile。如果您下载源代码在该电脑上重新compile，就可以支持AVX。其实你的电脑是支持AVX的，只是编译好的TensorFlow不支持。
