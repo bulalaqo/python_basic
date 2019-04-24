@@ -12,6 +12,7 @@ debug	Ctrl+F5	调试
 Ctrl+F12	继续调试（单步）
 F5	运行
 选中一行，右键可以执行当前行
+Ctrl+左键，快速定位到函数
 
 #pd<常用的统计分析> refer https://www.cnblogs.com/onemorepoint/p/7506099.html 
 
