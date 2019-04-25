@@ -101,4 +101,12 @@ Tensorflow 多GPU下，指定使用某一块GPU, 多块, 禁用
 import os
 os.environ["CUDA_VISIBLE_DEVICES"] = "-1" # 或者= ""
 
-
+控制使用CPU的个数
+cpu_num=10#指定使用的CPU个数
+config = tf.ConfigProto(device_count={"CPU": cpu_num},
+            inter_op_parallelism_threads = cpu_num,
+            intra_op_parallelism_threads = cpu_num,
+            log_device_placement=True)
+# 开始训练
+with tf.Session(config=config) as sess:
+    #以下编写自己的代码
