@@ -1,6 +1,32 @@
 python使用总结： Life is short, You need Python~ 人生苦短，我用python~
 
-# anaconda 快捷命令
+#<左除（\）右除（/）>
+'\'='//'
+
+# <加载mat文件>
+import scipy.io
+data = scipy.io.loadmat('matData.mat')  # 读取mat文件，但是mat文件暂时见到famous生成的，还有matlab的元组生成的，测试一个没能成功（不能确认mat文件数据编码格式是不是一致的）
+# print(data.keys())   # 查看mat文件中的所有变量
+print(data['matrix1'])
+print(data['matrix2'])
+matrix1 = data['matrix1'] 
+matrix2 = data['matrix2']
+print(matrix1)
+print(matrix2)
+scipy.io.savemat('matData2.mat',{'matrix1':matrix1, 'matrix2':matrix2})  # 写入mat文件
+
+import pandas as pd
+import scipy
+features = features_struct['data']
+dfdata = pd.DataFrame(features)
+datapath1 = 'E:/workspacelxr/contem/data.txt'
+dfdata.to_csv(datapath1, index=False)
+
+
+
+
+
+# <anaconda 快捷命令>
 Ctrl + Shift + Alt + P打开preference，可以设置一些例如字体，快捷键等。
 Ctrl加左键点击变量名称可以跳转到变量定义处。
 # %%可以创建cell使代码分部运行，类似于MATLAB，在单元格中Ctrl+enter可以运行当前cell，shift+enter可以运行当前单元格并跳转到下个cell。
