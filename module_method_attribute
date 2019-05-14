@@ -1,5 +1,21 @@
 python使用总结： Life is short, You need Python~ 人生苦短，我用python~
 
+# 毫秒时间戳处理（大坑）
+df = pd.read_csv (file,header =0)
+time_stamp =  int(time.mktime(time.strptime(file.split('.')[0].split('\\')[-1], "%Y-%m-%d %H-%M-%S")))
+AA = np.linspace(time_stamp*1000,time_stamp*1000+600*1000,30000,endpoint=False) 
+df['time_begin'] = [time_stamp]*len(df)
+
+#    df['time_stamp'] = [time.strftime('%Y-%m-%d %H:%M:%S.%F',time.localtime(i)) for i in AA/1000.]
+# time和datetime不同，datetime可以精确到微秒级
+df['time_stamp'] = [datetime.datetime.fromtimestamp(i).strftime('%Y-%m-%d %H:%M:%S.%f') for i in AA/1000.]
+df.index = pd.to_datetime (df['time_stamp'])
+    
+
+
+
+
+
 #<左除（\）右除（/）>
 '\'='//'
 
@@ -121,6 +137,12 @@ df.describe()   # 统计汇总，dataframe格式
 df.T
 df[df['age'].isin(['2','3'])] # 表显示满足条件：列one中的值包含'2','3'的所有行。
 df[df>0] = -df # 赋值
+
+# 存储csv和加载csv 处理索引列
+#第一种解决方式：不存索引
+df.to_csv(path,index=False,header=False)
+#第二种解决方式：声明文件第一列为索引，第一行为列名（默认就是，不必重新申明）
+aa = pd.read_csv(path,index_col=0,header=0)
 
 # 创建DataFrame
 dict = {'MEAN': MEAN,
