@@ -299,8 +299,9 @@ df=pd.read_excel(f, sheet_name,  header = 1, index_col=False) # index_col=False�
 
 # 读取csv
 df=pd.read_csv(filepath_or_buffer, sep=', ', delimiter=None, header='infer', names=None, index_col=None, usecols=None, squeeze=False, prefix=None, mangle_dupe_cols=True, dtype=None, engine=None, converters=None, true_values=None, false_values=None, skipinitialspace=False, skiprows=None, nrows=None, na_values=None, keep_default_na=True, na_filter=True, verbose=False, skip_blank_lines=True, parse_dates=False, infer_datetime_format=False, keep_date_col=False, date_parser=None, dayfirst=False, iterator=False, chunksize=None, compression='infer', thousands=None, decimal=b'.', lineterminator=None, quotechar='"', quoting=0, escapechar=None, comment=None, encoding=None, dialect=None, tupleize_cols=None, error_bad_lines=True, warn_bad_lines=True, skipfooter=0, skip_footer=0, doublequote=True, delim_whitespace=False, as_recarray=None, compact_ints=None, use_unsigned=None, low_memory=True, buffer_lines=None, memory_map=False, float_precision=None)[source]
-
-
+# pd.read_csv时出现unnamed列index_col=0
+# 第二种情况，即使路径、文件名都完整，还是报错的原因是这个参数中有中文，但是Python3不是已经支持中文了吗？参考了错误原因和pandas的源码，发现调用pandas的read_csv()方法时，默认使用C engine作为parser engine，而当文件名中含有中文的时候，用C engine在部分情况下就会出错。所以在调用read_csv()方法时指定engine为Python就可以解决问题了。
+# engine='python'可以消除 
 
 
 # 数据预处理异常数据筛选 https://blog.csdn.net/sublio/article/details/81327766 《categorical_data(类别型数据)预处理笔记：转化为数字》
