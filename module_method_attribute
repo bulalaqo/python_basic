@@ -165,8 +165,12 @@ df = pd.DataFrame(data=[[1],[3],[2]], columns=['id','name','sex'])
 
 # 更改列名，索引名
 df.columns = ['Id','Name','Sex'] # 重命名
-a.rename(columns={'A':'a', 'C':'c'}, replace=True) # refer ： https://www.cnblogs.com/hhh5460/p/5816774.html
+a.rename(columns={'A':'a', 'C':'c'}, replace=True) # 好像有点问题
+a = a.rename(columns={'A':'a', 'C':'c'}) # refer ： https://www.cnblogs.com/hhh5460/p/5816774.html
 c.index=['A','B','C','D','E']
+# 调整列顺序
+order = ['date', 'time', 'open', 'high', 'low', 'close', 'volumefrom', 'volumeto']
+df = df[order]
 
 # 常用切片及给切片赋值
 df.loc[:,['A']]
