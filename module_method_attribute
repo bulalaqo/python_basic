@@ -2,7 +2,8 @@ python使用总结： Life is short, You need Python~ 人生苦短，我用pytho
 
 # dataframe 根据时间切片两种方式：
     data000 = data[data['WTUR.Tm.Rw.Dt']> pd.to_datetime('2019-05-18 12:09:30')] # 方式1
-    data000 = data['2019-05-18 12:09:30':]  # 方式2，当按时间戳做索引时，可以直接切片
+    data000 = data['2019-05-18 12:09:30':]  # 方式2，当按时间戳做索引时，可以直接切片 需要配合
+df['date'] = pd.to_datetime(df['date']) #将数据类型转换为日期类型
 
 
 
