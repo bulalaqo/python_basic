@@ -14,6 +14,9 @@ sqlite_master(
     )
 '''
 #查看某数据库中所有表
+#        sql2 = "show tables" # 命令报错，不知为啥
+#        cursor.execute("SELECT name FROM sqlite_master WHERE type='table'")
+#        result=cursor.fetchall()
 def GetTables(db_file = 'main.db'):
     try:
         conn = sqlite3.connect(db_file)
