@@ -210,6 +210,12 @@ test_2 = test.fillna(test['score'].mean())  # 用统计量来替代:
 # 删除列
 df.drop(columns=['B', 'C'])
 df.drop(['B', 'C'], axis=1)
+DF= DF.drop('column_name', axis=1)；
+DF.drop('column_name',axis=1, inplace=True)
+DF.drop([DF.columns[[0,1, 3]]], axis=1, inplace=True)   # Note: zero indexed # 尤其针对原始csv文件‘,CNR3(dB),CNR4(dB),’每一行末尾有多余的‘,’，导致生成一个未命名列'Unnamed: 42'，需要删除。
+
+# Pandas 数据框增、删、改、查、去重、抽样基本操作 
+https://blog.csdn.net/claroja/article/details/65661826
 
 # 删除行
 df.drop([0, 1], inplace = True)
