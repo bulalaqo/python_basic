@@ -136,6 +136,9 @@ a_list_dtype = df.dtypes # 为series
     #8. object 
 np.issubdtype(df['time'][0], np.int)  # 对具体的列或值进行数据类型判断 
 
+# 转换数据类型
+df = df.apply(pd.to_numeric,errors='ignore')
+
 df.shape # 查看行列数，df_.shape[0]行数==len(df),df_.shape[1]列数
 df.head(3) # 查看3行，tail
 df.info()
