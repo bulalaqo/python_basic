@@ -317,7 +317,13 @@ df=pd.read_excel(f, sheet_name,  header = 1, index_col=False) # index_col=False�
     sheet2 = workbook.sheet_by_name(sheet_names[0])
     rows = sheet2.row_values(0) # 获取第四行内容
     cols = sheet2.col_values(1) # 获取第二列内容
-
+# 保存excel到sheet
+    writer = pd.ExcelWriter('a.xlsx')
+    table_count2.to_excel(writer, sheet_name='sheet1')
+    table_count2.to_excel(writer, sheet_name='sheet2')
+    writer.save() 
+# 保存excel到sheet
+    df.to_excel(r'C:\\Users\\guohuaiqi\\Desktop\\2.xls',sheet_name='Sheet1')
 # 读取csv
 df=pd.read_csv(filepath_or_buffer, sep=', ', delimiter=None, header='infer', names=None, index_col=None, usecols=None, squeeze=False, prefix=None, mangle_dupe_cols=True, dtype=None, engine=None, converters=None, true_values=None, false_values=None, skipinitialspace=False, skiprows=None, nrows=None, na_values=None, keep_default_na=True, na_filter=True, verbose=False, skip_blank_lines=True, parse_dates=False, infer_datetime_format=False, keep_date_col=False, date_parser=None, dayfirst=False, iterator=False, chunksize=None, compression='infer', thousands=None, decimal=b'.', lineterminator=None, quotechar='"', quoting=0, escapechar=None, comment=None, encoding=None, dialect=None, tupleize_cols=None, error_bad_lines=True, warn_bad_lines=True, skipfooter=0, skip_footer=0, doublequote=True, delim_whitespace=False, as_recarray=None, compact_ints=None, use_unsigned=None, low_memory=True, buffer_lines=None, memory_map=False, float_precision=None)[source]
 # pd.read_csv时出现unnamed列index_col=0
