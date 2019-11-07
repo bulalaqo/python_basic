@@ -306,7 +306,10 @@ b=a.cumsum()
 b.plot()
 plt.show()    #最后一定要加这个plt.show()，不然不会显示出图来。
 
+# 透视表
+# 本质就是dataframe，但是新生成的就是无法求和，只能先保存csv在加载csv，就可以真傻逼。
 
+# dataframe 保存excel有时候无法保存，只能先保存为csv，再读取csv再保存就可以，真傻逼。
 # 读取excel
 df=pd.read_excel(f, sheet_name,  header = 1, index_col=False) # index_col=False，不设置列索引 # refer # https://blog.csdn.net/brucewong0516/article/details/79096633
     # 或者直接使用xlrd
@@ -322,7 +325,7 @@ df=pd.read_excel(f, sheet_name,  header = 1, index_col=False) # index_col=False�
     table_count2.to_excel(writer, sheet_name='sheet1')
     table_count2.to_excel(writer, sheet_name='sheet2')
     writer.save() 
-# 保存excel到sheet
+# 保存excel
     df.to_excel(r'C:\\Users\\guohuaiqi\\Desktop\\2.xls',sheet_name='Sheet1')
 # 读取csv
 df=pd.read_csv(filepath_or_buffer, sep=', ', delimiter=None, header='infer', names=None, index_col=None, usecols=None, squeeze=False, prefix=None, mangle_dupe_cols=True, dtype=None, engine=None, converters=None, true_values=None, false_values=None, skipinitialspace=False, skiprows=None, nrows=None, na_values=None, keep_default_na=True, na_filter=True, verbose=False, skip_blank_lines=True, parse_dates=False, infer_datetime_format=False, keep_date_col=False, date_parser=None, dayfirst=False, iterator=False, chunksize=None, compression='infer', thousands=None, decimal=b'.', lineterminator=None, quotechar='"', quoting=0, escapechar=None, comment=None, encoding=None, dialect=None, tupleize_cols=None, error_bad_lines=True, warn_bad_lines=True, skipfooter=0, skip_footer=0, doublequote=True, delim_whitespace=False, as_recarray=None, compact_ints=None, use_unsigned=None, low_memory=True, buffer_lines=None, memory_map=False, float_precision=None)[source]
